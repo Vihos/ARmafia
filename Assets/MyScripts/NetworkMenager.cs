@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkMenager : MonoBehaviour {
-	
-	private const string typeName = "ARMafia";
-	private string gameName = "Your Room";
+public class NetworkMenager : ScriptableObject {
 
-	public void StartServer(string gameName)
+	public void StartServer(string typeName, string gameName)
 	{
 		Network.InitializeServer (4, 25000, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (typeName, gameName);
@@ -24,17 +21,9 @@ public class NetworkMenager : MonoBehaviour {
 		Debug.Log("Server Initializied");
 	}
 
+	// End Menager
+	/*
 	void OnGUI(){
-		if (!Network.isClient && !Network.isServer) {
-			gameName = GUI.TextField (new Rect(2*Screen.width/3,0,Screen.width/3,Screen.height/8), gameName, 25);
-
-			if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Start Server"))
-				StartServer (gameName);
-		} else {
-			if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Stop Server"))
-				StopServer ();
-		}
-
 		if (GUI.Button(new Rect(30, Screen.height/8+10, Screen.width/3, Screen.height/8), "Refresh Hosts"))
 			RefreshHostList();
 
@@ -47,25 +36,14 @@ public class NetworkMenager : MonoBehaviour {
 			}
 		}
 	}
+	*/
 
 	public void writeLine(string a){
 		Debug.Log (a);
 	}
 
-	//!!!
 
-	private HostData[] hostList;
-
-	private void RefreshHostList()
-	{
-		MasterServer.RequestHostList(typeName);
-	}
-
-	void OnMasterServerEvent(MasterServerEvent msEvent)
-	{
-		if (msEvent == MasterServerEvent.HostListReceived)
-			hostList = MasterServer.PollHostList();
-	}
+	//TODO Remove
 
 	private void JoinServer(HostData hostData)
 	{
