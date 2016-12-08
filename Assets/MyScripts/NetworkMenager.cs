@@ -5,9 +5,9 @@ using UnityEngine;
 public class NetworkMenager : MonoBehaviour {
 	
 	private const string typeName = "ARMafia";
-	private const string gameName = "testRoom";
+	private string gameName = "Your Room";
 
-	public void StartServer()
+	public void StartServer(string gameName)
 	{
 		Network.InitializeServer (4, 25000, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (typeName, gameName);
@@ -26,21 +26,23 @@ public class NetworkMenager : MonoBehaviour {
 
 	void OnGUI(){
 		if (!Network.isClient && !Network.isServer) {
-			if (GUI.Button (new Rect (Screen.width/2-75, 50, 150, 100), "Start Server"))
-				StartServer ();
+			gameName = GUI.TextField (new Rect(2*Screen.width/3,0,Screen.width/3,Screen.height/8), gameName, 25);
+
+			if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Start Server"))
+				StartServer (gameName);
 		} else {
-			if (GUI.Button (new Rect (Screen.width/2-75, 50, 150, 100), "Stop Server"))
+			if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Stop Server"))
 				StopServer ();
 		}
 
-		if (GUI.Button(new Rect(Screen.width/2-75, 200, 150, 100), "Refresh Hosts"))
+		if (GUI.Button(new Rect(30, Screen.height/8+10, Screen.width/3, Screen.height/8), "Refresh Hosts"))
 			RefreshHostList();
 
 		if (hostList != null)
 		{
 			for (int i = 0; i < hostList.Length; i++)
 			{
-				if (GUI.Button(new Rect(30, 50 + (110 * i), 150, 100), hostList[i].gameName))
+				if (GUI.Button(new Rect(30,  Screen.height/4+20 + ((Screen.height/8+10) * i), Screen.width/3, Screen.height/8), hostList[i].gameName))
 					JoinServer(hostList[i]);
 			}
 		}
