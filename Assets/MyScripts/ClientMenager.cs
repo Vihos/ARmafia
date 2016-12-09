@@ -1,34 +1,45 @@
-﻿using System.Collections;
+﻿/*
+*  ARMafia Project
+* 
+* Client Logic File  
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ClientMenager : MonoBehaviour {
 
+    // Network servers filter (GameName) 
 	private const string typeName = "ARMafia";
 
-	public void RefreshHostList()
-	{
-		MasterServer.RequestHostList(typeName);
-	}
 
-	public void OnMasterServerEvent(MasterServerEvent msEvent)
+    // OnCall create event ant wait for servers tracking (by filter 'typeName')
+    public static void RefreshHostList()
 	{
-		Debug.Log ("Listener");
+        MasterServer.RequestHostList(typeName);
+    }
 
+    // Event which was fill array with servers (It will wait far answer from MasterServer method)
+    public void OnMasterServerEvent(MasterServerEvent msEvent)
+	{
 		if (msEvent == MasterServerEvent.HostListReceived) {
-			hostList = MasterServer.PollHostList ();
-		}
+            clientGUI.hostList = MasterServer.PollHostList();
+        }
 	}
 
-	/*
-	void OnGUI(){
-		if (hostList != null) {
-			for (int i = 0; i < hostList.Length; i++) {
-				if (GUI.Button (new Rect (30, Screen.height / 4 + 20 + ((Screen.height / 8 + 10) * i), Screen.width / 3, Screen.height / 8), hostList [i].gameName)) {
-					//clientMenager.JoinServer(clientMenager.hostList[i], clientMenager.hostList);
-				}
-			}
-		}
-	}*/
+    //
+    // !!!In Progress!!!
+    // Connect to server method
+    public static void JoinServer(HostData hostData)
+    {
+        Network.Connect(hostData);
+    }
+
+    // Debug on server connect Event
+    void OnConnectedToServer()
+    {
+        Debug.Log("Server Joined");
+    }
 
 }

@@ -1,32 +1,36 @@
-﻿using System.Collections;
+﻿/*
+*  ARMafia Project
+* 
+* Client GUI Render File  
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class clientGUI : MonoBehaviour {
 
-	ClientMenager clientMenager;
-	public HostData[] hostList;
+    public static HostData[] hostList;
 
-	void Start() {
-		clientMenager = new ClientMenager ();
-	}
+    // Fraphics Render
+    void OnGUI()
+    {
+        // TODO Change positions
+        if (GUI.Button(new Rect(30, Screen.height / 8 + 10, Screen.width / 3, Screen.height / 8), "Refresh Hosts"))
+            ClientMenager.RefreshHostList();
 
-	void OnGUI(){
-		if (GUI.Button(new Rect(30, Screen.height/8+10, Screen.width/3, Screen.height/8), "Refresh Hosts"))
-			clientMenager.RefreshHostList();
+        serverListGUI();
+    }
 
-		//clientMenager.OnMasterServerEvent ();
-	}
-
-	void serverListGUI(){
-		HostData[] hostlist = clientMenager.hostList;
-
-		if (hostlist != null)
+	void serverListGUI()
+    {
+        if (hostList != null)
 		{
-			for (int i = 0; i < hostlist.Length; i++)
+			for (int i = 0; i < hostList.Length; i++)
 			{
-				if (GUI.Button (new Rect (30, Screen.height / 4 + 20 + ((Screen.height / 8 + 10) * i), Screen.width / 3, Screen.height / 8), hostlist [i].gameName)) {
-					//clientMenager.JoinServer(clientMenager.hostList[i], clientMenager.hostList);
+                // TODO Change positions
+                if (GUI.Button (new Rect (30, Screen.height / 4 + 20 + ((Screen.height / 8 + 10) * i), Screen.width / 3, Screen.height / 8), hostList[i].gameName)) { 
+					//ClientMenager.JoinServer(hostList[i]);
 				}
 			}
 		}
