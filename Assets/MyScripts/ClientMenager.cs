@@ -42,4 +42,9 @@ public class ClientMenager : MonoBehaviour {
         Debug.Log("Server Joined");
     }
 
+    private void OnFailedToConnect(NetworkConnectionError error)
+    {
+        Debug.Log(error);
+    }
+
 }
