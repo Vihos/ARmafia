@@ -7,7 +7,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class ClientMenager : MonoBehaviour {
 
@@ -47,9 +46,13 @@ public class ClientMenager : MonoBehaviour {
     {
         Debug.Log(error);
     }
+<<<<<<< HEAD
 	[PunRPC]
 	void actualizarChatbox(string texto)
 	{
 		Debug.Log(texto);
 	}
+=======
+
+>>>>>>> parent of be97411... for probes
 }

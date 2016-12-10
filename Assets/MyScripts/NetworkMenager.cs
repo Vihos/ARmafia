@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+
 public class NetworkMenager : MonoBehaviour
 {
 
     
 	clientGUI slider;
-	NetworkView networkview;
+
 	// Use this for initialization
 	void Start ()
 	{
-		networkview = new NetworkView ();
+		slider = GetComponent<clientGUI> ();
 	}
 
     public static void StartServer(string typeName, string gameName)
@@ -34,24 +34,13 @@ public class NetworkMenager : MonoBehaviour
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");
-
     }
+		
 
-
-
-
+    //TODO Remove
 
     private void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
-
-	}
-	public void Sendmessage(){
-		networkview.RPC("actualizarChatbox",RPCMode.All, "how are you");
-	}
-	[RPC]
-	void actualizarChatbox(string texto)
-	{
-		Debug.Log(texto);
 	}
 }
