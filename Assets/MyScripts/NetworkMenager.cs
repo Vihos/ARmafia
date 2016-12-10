@@ -1,17 +1,18 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//[RequireComponent (typeof(NetworkView))]
 public class NetworkMenager : MonoBehaviour
 {
 
     
-	clientGUI slider;
+	public NetworkView networkview;
 
 	// Use this for initialization
 	void Start ()
 	{
-		slider = GetComponent<clientGUI> ();
+		networkview = GetComponent<NetworkView>();
 	}
 
     public static void StartServer(string typeName, string gameName)
@@ -42,5 +43,14 @@ public class NetworkMenager : MonoBehaviour
     private void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
+
+	}
+	public void Sendmessage(){
+		networkview.RPC("actualizarChatbox",RPCMode.All, "how are you");
+	}
+	[RPC]
+	void actualizarChatbox(string texto)
+	{
+		Debug.Log(texto);
 	}
 }
