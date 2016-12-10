@@ -45,8 +45,8 @@ public class NetworkMenager : MonoBehaviour
 		Network.Connect(hostData);
 
 	}
-	public void Sendmessage(){
-		networkview.RPC("actualizarChatbox",RPCMode.All, "how are you");
+	public void Sendmessage(string texto){
+		networkview.RPC("actualizarChatbox",RPCMode.All, texto);
 	}
 	[RPC]
 	void actualizarChatbox(string texto)

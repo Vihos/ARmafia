@@ -11,6 +11,7 @@ using UnityEngine;
 public class clientGUI : MonoBehaviour {
 
     public static HostData[] hostList;
+	public string text = "";
     // Fraphics Render
     void OnGUI()
     {
@@ -18,6 +19,7 @@ public class clientGUI : MonoBehaviour {
         if (GUI.Button(new Rect(30, Screen.height / 8 + 10, Screen.width / 3, Screen.height / 8), "Refresh Hosts"))
             ClientMenager.RefreshHostList();
 
+		GUI.TextField (new Rect(0, Screen.height / 8*6, Screen.width / 3*2, Screen.height / 4), text, 25);
         serverListGUI();
     }
 
@@ -34,5 +36,8 @@ public class clientGUI : MonoBehaviour {
 			}
 		}
 	}
-
+	public void change(string textoq)
+	{
+		text=textoq;
+	}
 }
