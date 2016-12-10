@@ -28,14 +28,12 @@ public class NetworkMenager : MonoBehaviour
 
 	void OnServerInitialized()
 	{
-		slider.SpawnPlayer();
         Debug.Log("Server Initializied");
 	}
 
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");
-		slider.SpawnPlayer();
     }
 		
 
@@ -45,5 +43,4 @@ public class NetworkMenager : MonoBehaviour
 	{
 		Network.Connect(hostData);
 	}
-
 }
