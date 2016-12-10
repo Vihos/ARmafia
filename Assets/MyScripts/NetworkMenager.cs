@@ -1,16 +1,27 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkMenager : ScriptableObject {
+//[RequireComponent (typeof(NetworkView))]
+public class NetworkMenager : MonoBehaviour
+{
 
-	public void StartServer(string typeName, string gameName)
+    
+	public NetworkView networkview;
+
+	// Use this for initialization
+	void Start ()
+	{
+		networkview = GetComponent<NetworkView>();
+	}
+
+    public static void StartServer(string typeName, string gameName)
 	{
 		Network.InitializeServer (4, 25000, !Network.HavePublicAddress ());
 		MasterServer.RegisterHost (typeName, gameName);
 	}
 
-	public void StopServer() {
+	public static void StopServer() {
 		Network.Disconnect ();
 		MasterServer.UnregisterHost ();
 		Debug.LogWarning ("Server stopped.");
@@ -18,19 +29,28 @@ public class NetworkMenager : ScriptableObject {
 
 	void OnServerInitialized()
 	{
-		Debug.Log("Server Initializied");
+        Debug.Log("Server Initializied");
 	}
 
-	//TODO Remove
+    void OnConnectedToServer()
+    {
+        Debug.Log("Server Joined");
+    }
+		
 
-	private void JoinServer(HostData hostData)
+    //TODO Remove
+
+    private void JoinServer(HostData hostData)
 	{
 		Network.Connect(hostData);
-	}
 
-	void OnConnectedToServer()
+	}
+	public void Sendmessage(){
+		networkview.RPC("actualizarChatbox",RPCMode.All, "how are you");
+	}
+	[RPC]
+	void actualizarChatbox(string texto)
 	{
-		Debug.Log("Server Joined");
+		Debug.Log(texto);
 	}
-
 }

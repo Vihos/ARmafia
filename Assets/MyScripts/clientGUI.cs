@@ -11,7 +11,6 @@ using UnityEngine;
 public class clientGUI : MonoBehaviour {
 
     public static HostData[] hostList;
-
     // Fraphics Render
     void OnGUI()
     {
@@ -29,10 +28,11 @@ public class clientGUI : MonoBehaviour {
 			for (int i = 0; i < hostList.Length; i++)
 			{
                 // TODO Change positions
-                if (GUI.Button (new Rect (30, Screen.height / 4 + 20 + ((Screen.height / 8 + 10) * i), Screen.width / 3, Screen.height / 8), hostList[i].gameName)) { 
-					//ClientMenager.JoinServer(hostList[i]);
+                if (GUI.Button (new Rect (30, Screen.height / 4 + 20 + ((Screen.height / 8 + 10) * i), Screen.width / 3, Screen.height / 8), hostList[i].gameName)) {
+                    ClientMenager.JoinServer(hostList[i]);
 				}
 			}
 		}
 	}
+
 }

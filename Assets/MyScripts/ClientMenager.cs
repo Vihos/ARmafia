@@ -1,4 +1,4 @@
-﻿/*
+/*
 *  ARMafia Project
 * 
 * Client Logic File  
@@ -41,5 +41,16 @@ public class ClientMenager : MonoBehaviour {
     {
         Debug.Log("Server Joined");
     }
+
+    private void OnFailedToConnect(NetworkConnectionError error)
+    {
+        Debug.Log(error);
+    }
+
+	[RPC]
+	void actualizarChatbox(string textoq)
+	{
+		Debug.Log(textoq);
+	}
 
 }
