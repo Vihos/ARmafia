@@ -11,7 +11,7 @@ using UnityEngine;
 public class clientGUI : MonoBehaviour {
 
     public static HostData[] hostList;
-
+	public GameObject playerPrefab;
     // Fraphics Render
     void OnGUI()
     {
@@ -34,6 +34,10 @@ public class clientGUI : MonoBehaviour {
 				}
 			}
 		}
+	}
+	public void SpawnPlayer()
+	{
+		Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
 	}
 
 }

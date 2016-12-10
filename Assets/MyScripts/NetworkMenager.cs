@@ -5,8 +5,14 @@ using UnityEngine;
 public class NetworkMenager : MonoBehaviour
 {
 
-    public GameObject playerPrefab;
+    
+	clientGUI slider;
 
+	// Use this for initialization
+	void Start ()
+	{
+		slider = GetComponent<clientGUI> ();
+	}
 
     public static void StartServer(string typeName, string gameName)
 	{
@@ -22,20 +28,16 @@ public class NetworkMenager : MonoBehaviour
 
 	void OnServerInitialized()
 	{
-        SpawnPlayer();
+		slider.SpawnPlayer();
         Debug.Log("Server Initializied");
 	}
 
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");
-        SpawnPlayer();
+		slider.SpawnPlayer();
     }
-
-    private void SpawnPlayer()
-    {
-        Network.Instantiate(playerPrefab, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-    }
+		
 
     //TODO Remove
 
