@@ -47,11 +47,15 @@ public class ClientMenager : MonoBehaviour {
         Debug.Log(error);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 	[PunRPC]
 	void actualizarChatbox(string texto)
 	{
 		Debug.Log(texto);
 	}
+=======
+
+>>>>>>> parent of be97411... for probes
 =======
 
 >>>>>>> parent of be97411... for probes
