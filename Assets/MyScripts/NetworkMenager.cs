@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+
 public class NetworkMenager : MonoBehaviour
 {
 
     
-	clientGUI slider;
-	NetworkView networkview;
+	public NetworkView networkview;
 	// Use this for initialization
 	void Start ()
 	{
-		networkview = new NetworkView ();
+		 networkview = new NetworkView();
 	}
 
     public static void StartServer(string typeName, string gameName)
@@ -34,12 +33,10 @@ public class NetworkMenager : MonoBehaviour
     void OnConnectedToServer()
     {
         Debug.Log("Server Joined");
-
     }
+		
 
-
-
-
+    //TODO Remove
 
     private void JoinServer(HostData hostData)
 	{
@@ -53,5 +50,6 @@ public class NetworkMenager : MonoBehaviour
 	void actualizarChatbox(string texto)
 	{
 		Debug.Log(texto);
+
 	}
 }

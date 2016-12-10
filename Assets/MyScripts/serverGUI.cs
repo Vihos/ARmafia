@@ -7,12 +7,6 @@ public class serverGUI : MonoBehaviour {
 	private const string typeName = "ARMafia";
 	private string gameName = "Your Room";
     private NetworkPlayer[] netPlayers;
-	private NetworkMenager nm;
-
-	void Start ()
-	{
-		nm = GetComponent<NetworkMenager>();
-	}
 
     void OnGUI(){
 		if (!Network.isClient && !Network.isServer) {
@@ -29,16 +23,9 @@ public class serverGUI : MonoBehaviour {
 
             if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Start Server"))
 				NetworkMenager.StartServer (typeName, gameName);
-
-			if (GUI.Button (new Rect (220, 90, Screen.width/3, Screen.height/8), "send hello"))
-				nm.Sendmessage ();
-			
 		} else {
 			if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Stop Server"))
                 NetworkMenager.StopServer ();
-
-			if (GUI.Button (new Rect (220, 90, Screen.width/3, Screen.height/8), "send hello"))
-				nm.Sendmessage ();
 		}
 	}
 }
