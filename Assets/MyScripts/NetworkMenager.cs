@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -49,7 +49,7 @@ public class NetworkMenager : MonoBehaviour
 	public void Sendmessage(){
 		networkview.RPC("actualizarChatbox",RPCMode.All, "how are you");
 	}
-	[RPC]
+	[PunRPC]
 	void actualizarChatbox(string texto)
 	{
 		Debug.Log(texto);
