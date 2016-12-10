@@ -7,6 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class ClientMenager : MonoBehaviour {
 
@@ -46,5 +47,9 @@ public class ClientMenager : MonoBehaviour {
     {
         Debug.Log(error);
     }
-
+	[RPC]
+	void actualizarChatbox(string texto)
+	{
+		Debug.Log(texto);
+	}
 }
