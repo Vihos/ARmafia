@@ -1,4 +1,4 @@
-﻿/*
+/*
 *  ARMafia Project
 * 
 * Client Logic File  
@@ -47,7 +47,7 @@ public class ClientMenager : MonoBehaviour {
     {
         Debug.Log(error);
     }
-	[RPC]
+	[PunRPC]
 	void actualizarChatbox(string texto)
 	{
 		Debug.Log(texto);
