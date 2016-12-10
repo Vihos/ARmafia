@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
 
     public float speed = 10f;
 
-    private Rigidbody rigidbody;
+    public Rigidbody rigidbody;
 
     // Update is called once per frame
     void Update () {
