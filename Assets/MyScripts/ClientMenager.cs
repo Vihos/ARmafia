@@ -47,10 +47,10 @@ public class ClientMenager : MonoBehaviour {
         Debug.Log(error);
     }
 
-	[PunRPC]
-	void actualizarChatbox(string texto)
+	[RPC]
+	void actualizarChatbox(string textoq)
 	{
-		Debug.Log(texto);
+		Debug.Log(textoq);
 	}
 
 }
