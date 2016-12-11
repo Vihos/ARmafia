@@ -12,6 +12,11 @@ public class ClientMenager : MonoBehaviour {
 
     // Network servers filter (GameName) 
 	private const string typeName = "ARMafia";
+	private clientGUI clGui;
+	void Start ()
+	{
+		clGui = GetComponent<clientGUI>();
+	}
 
 
     // OnCall create event ant wait for servers tracking (by filter 'typeName')
@@ -51,6 +56,7 @@ public class ClientMenager : MonoBehaviour {
 	void actualizarChatbox(string textoq)
 	{
 		Debug.Log(textoq);
+		clGui.change(textoq);
 	}
 
 }
