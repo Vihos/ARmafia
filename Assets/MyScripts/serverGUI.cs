@@ -36,6 +36,12 @@ public class serverGUI : MonoBehaviour {
 				nm.Sendmessage (message);
 				message = "";
 			}
+
+			if (GUI.Button (new Rect (0, Screen.height / 8 * 7, Screen.width / 3, Screen.height / 8), "try")) {
+				Application.LoadLevel("try");
+			}
+
+
 		} else {
 			if (GUI.Button (new Rect (30, 0, Screen.width/3, Screen.height/8), "Stop Server"))
                 NetworkMenager.StopServer ();
@@ -46,7 +52,9 @@ public class serverGUI : MonoBehaviour {
 				nm.Sendmessage (message);
 				message = "";
 			}
-			
+			if (GUI.Button (new Rect (0, Screen.height / 8 * 7, Screen.width / 3, Screen.height / 8), "try")) {
+				Application.LoadLevel("try");
+			}
 		}
 	}
 }
