@@ -7,7 +7,6 @@ public class MainMenu : MonoBehaviour {
 
     public void singleScene(string scene)
     {
-		Debug.Log ("trolololo");
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 }
