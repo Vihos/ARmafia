@@ -24,6 +24,7 @@ public class CreateServer : MonoBehaviour {
             CreateModalWindow("Внимание!", "Сервер уже запущен на вашем устройстве.");
         }
     }
+
     public void ChangeRoomName()
     {
         CurrentRoomName = RoomName.text;
@@ -67,13 +68,4 @@ public class CreateServer : MonoBehaviour {
     {
         Debug.Log("Server Initializied");
     }
-
-	void OnConnectedToServer()
-	{
-		networkview.RPC("messageFromServer",RPCMode.All, "You was been detected from user");
-	}
-	[RPC]
-	void messageFromServer(string texto)
-	{
-	}
 }
