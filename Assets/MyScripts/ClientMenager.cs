@@ -1,7 +1,7 @@
 /*
 *  ARMafia Project
 * 
-* Client Logic File  
+*  Client Logic File  
 */
 
 using System.Collections;
