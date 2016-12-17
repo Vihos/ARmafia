@@ -19,13 +19,15 @@ public class CreateServer : MonoBehaviour {
 
     public void Start()
     {
-        
+        if (Network.isServer)
+        {
+            CreateModalWindow("Внимание!", "Сервер уже запущен на вашем устройстве.");
+        }
     }
 
     public void ChangeRoomName()
     {
         CurrentRoomName = RoomName.text;
-        Debug.Log(RoomName.text);
     }
 
     public void ChangePlayerCount()
@@ -50,7 +52,6 @@ public class CreateServer : MonoBehaviour {
 
     public void HostServer()
     {
-        networkview = GetComponent<NetworkView>();
         if (CurrentRoomName.Length > 2)
         {
             Network.InitializeServer(CurrentPlayerCount, 25000, !Network.HavePublicAddress());
