@@ -95,6 +95,7 @@ namespace Kudan.AR
 			ProcessNewTrackables();
 		}
 
+
 		/// <summary>
 		/// Stops tracking.
 		/// </summary>
@@ -219,5 +220,18 @@ namespace Kudan.AR
 				GUILayout.EndVertical();
 			}
 		}
+
+
+
+
+
+		public void LogName(){
+			Trackable[] newTrackables = Plugin.GetDetectedTrackablesAsArray();
+			Trackable[] oldtrackables = _lastDetectedTrackables;
+			Debug.Log (newTrackables[0].name );
+		}
+
+
+
 	}
 }
