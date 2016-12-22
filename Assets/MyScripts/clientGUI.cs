@@ -11,6 +11,7 @@ using UnityEngine;
 public class clientGUI : MonoBehaviour {
 
     public static HostData[] hostList;
+	public string text = "";
     // Fraphics Render
     void OnGUI()
     {
@@ -34,5 +35,9 @@ public class clientGUI : MonoBehaviour {
 			}
 		}
 	}
-
+	public void change(string textoq)
+	{
+		text=textoq;
+		Debug.Log (textoq);
+	}
 }
