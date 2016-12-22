@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ConnectToServer : MonoBehaviour
 {
-	public NetworkView networkview;
+
     public HostData[] hostList;
     public GameObject ButtonClone; // Init Button Clone Object
     public GameObject ServersList; // Init Parent for Button Clone Object
@@ -95,12 +95,5 @@ public class ConnectToServer : MonoBehaviour
     {
         CreateModalWindow("Клиент", "Вы успешно подключились к серверу");
         //SceneManager.LoadScene("lobby", LoadSceneMode.Single);
-		networkview.RPC("messageFromServer",RPCMode.All, "You was been detected from server");
     }
-
-	[RPC]
-	void messageFromServer(string texto)
-	{
-		Debug.Log(texto);
-	}
 }
