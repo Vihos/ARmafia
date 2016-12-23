@@ -12,17 +12,17 @@ public class CreateServer : MonoBehaviour {
     public Canvas ModalWindow;
     public Text ModalTitle;
     public Text ModalReport;
-
+	GameObject go;
     private string CurrentRoomName = "";
     private int CurrentPlayerCount = 3;
     private const string typeName = "ARMafia";
-
     public void Start()
     {
         if (Network.isServer)
         {
             CreateModalWindow("Внимание!", "Сервер уже запущен на вашем устройстве.");
         }
+		go = GameObject.Find ("NetviewObj");
     }
 
     public void ChangeRoomName()
@@ -68,4 +68,10 @@ public class CreateServer : MonoBehaviour {
     {
         Debug.Log("Server Initializied");
     }
+
+	void OnConnectedToServer()
+	{
+		go.
+			.RPC("ChangeScene",RPCMode.OthersBuffered, "try");
+	}
 }

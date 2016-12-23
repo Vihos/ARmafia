@@ -14,7 +14,7 @@ public class ConnectToServer : MonoBehaviour
     public Canvas ModalWindow;
     public Text ModalTitle;
     public Text ModalReport;
-
+	public NetworkView networkview;
     public void CreateModalWindow(string title, string error)
     {
         ModalTitle.text = title;
@@ -96,4 +96,10 @@ public class ConnectToServer : MonoBehaviour
         CreateModalWindow("Клиент", "Вы успешно подключились к серверу");
         //SceneManager.LoadScene("lobby", LoadSceneMode.Single);
     }
+
+	[RPC]
+	void ChangeScene(string texto)
+	{
+		Application.LoadLevel(texto);
+	}
 }
