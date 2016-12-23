@@ -7,7 +7,7 @@ public class CreateServer : MonoBehaviour {
 
     public InputField RoomName;
     public Dropdown PlayerCount;
-    public NetworkView networkview;
+    private NetworkView networkview;
 
     public Canvas ModalWindow;
     public Text ModalTitle;
@@ -19,6 +19,8 @@ public class CreateServer : MonoBehaviour {
 
     public void Start()
     {
+        networkview = GameObject.Find("NetworkView").GetComponent<NetworkView>();
+
         if (Network.isServer)
         {
             CreateModalWindow("Внимание!", "Сервер уже запущен на вашем устройстве.");
