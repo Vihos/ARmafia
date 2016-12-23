@@ -18,13 +18,11 @@ public class CreateServer : MonoBehaviour {
     private const string typeName = "ARMafia";
     public void Start()
     {
-        networkview = GameObject.Find("NetworkView").GetComponent<NetworkView>();
 
         if (Network.isServer)
         {
             CreateModalWindow("Внимание!", "Сервер уже запущен на вашем устройстве.");
         }
-		go = GameObject.Find ("NetviewObj");
     }
 
     public void ChangeRoomName()
@@ -73,7 +71,7 @@ public class CreateServer : MonoBehaviour {
 
 	void OnConnectedToServer()
 	{
-		go.
-			.RPC("ChangeScene",RPCMode.OthersBuffered, "try");
+		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
+		networkview.RPC("Change",RPCMode.AllBuffered,"Vuforia");
 	}
 }

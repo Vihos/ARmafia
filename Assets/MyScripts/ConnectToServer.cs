@@ -35,7 +35,6 @@ public class ConnectToServer : MonoBehaviour
         {
             SceneManager.LoadScene("lobby", LoadSceneMode.Single);
         }
-
         RefreshServerList();
     }
 
@@ -93,13 +92,14 @@ public class ConnectToServer : MonoBehaviour
 
     void OnConnectedToServer()
     {
-        CreateModalWindow("Клиент", "Вы успешно подключились к серверу");
+        //CreateModalWindow("Клиент", "Вы успешно подключились к серверу");
         //SceneManager.LoadScene("lobby", LoadSceneMode.Single);
     }
 
 	[RPC]
-	void ChangeScene(string texto)
+	public void Change(string texto)
 	{
 		Application.LoadLevel(texto);
+		//Debug.Log("trololololololololo");
 	}
 }
