@@ -31,8 +31,8 @@ public class VuforiaCameraTest : MonoBehaviour {
         // 100f * Mathf.Cos(6.28f * this.transform.rotation.z)
 
         //x = - 150f * Mathf.Sin(Mathf.PI * this.transform.rotation.z * (this.transform.rotation.x / Mathf.Abs(this.transform.rotation.x)));
-        x = -150f * Mathf.Cos(Mathf.PI * this.transform.rotation.z);
-        y = -150f * Mathf.Sin(Mathf.PI * this.transform.rotation.z);
+        //x = -150f * Mathf.Cos(Mathf.PI * this.transform.rotation.z);
+        //y = -150f * Mathf.Sin(Mathf.PI * this.transform.rotation.z);
 
         //y = - 150f * Mathf.Cos(Mathf.PI * this.transform.rotation.z * (this.transform.rotation.x / Mathf.Abs(this.transform.rotation.x)));
 
