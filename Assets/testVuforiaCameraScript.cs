@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class testVuforiaCameraScript : MonoBehaviour {
-    public AnimationClip showCardClip;
+    private Animator anim;
     public Text myText;
     public GameObject card;
     private float angle;
@@ -29,14 +29,9 @@ public class testVuforiaCameraScript : MonoBehaviour {
 
             myText.text = "" + this.transform.eulerAngles;
         }
-        else if (isCardShows)
-        {
-            card.transform.position = Vector3.Lerp(card.transform.position, new Vector3(card.transform.position.x, 0.5f, card.transform.position.z), 0.25f);
-        }
-        else if (!isCardShows)
-        {
-            card.transform.position = Vector3.Lerp(card.transform.position, cardPositions[0], 0.25f);
-        }
+
+        //card.transform.position = Vector3.Lerp(card.transform.position, new Vector3(card.transform.position.x, 0.5f, card.transform.position.z), 0.25f);
+        //card.transform.position = Vector3.Lerp(card.transform.position, cardPositions[0], 0.25f);
 	}
 
     public void submitMyCardPosition()
@@ -51,11 +46,17 @@ public class testVuforiaCameraScript : MonoBehaviour {
         }
         else if (!isCardShows)
         {
+            card.transform.position = new Vector3(card.transform.position.x, 0.5f, card.transform.position.z);
+            card.transform.eulerAngles = new Vector3(210f, card.transform.eulerAngles.y, card.transform.eulerAngles.z);
+
             isCardShows = true;
             Debug.Log("isCardShows true");
         }
         else if (isCardShows)
         {
+            card.transform.position = new Vector3(card.transform.position.x, 0f, card.transform.position.z);
+            card.transform.eulerAngles = new Vector3(cardRotations[0].x, card.transform.eulerAngles.y, card.transform.eulerAngles.z);
+
             isCardShows = false;
             Debug.Log("isCardShows false");
         }
