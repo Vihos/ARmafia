@@ -8,19 +8,21 @@ public class VuforiaCameraTest : MonoBehaviour {
     public GameObject card;
     public Text markerPosText;
     public Text cameraPosText;
-    public float x, y, z;
+    private float angle;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        angle = Mathf.PI * Quaternion.Angle(card.transform.rotation, this.transform.rotation) / 180;
 
         //card.transform.position = new Vector3(card.transform.position.x, 100f, card.transform.position.z);
-        //card.transform.rotation = new Quaternion (card.transform.rotation.x, card.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+        card.transform.rotation = new Quaternion (card.transform.rotation.x, card.transform.rotation.y, this.transform.rotation.z, this.transform.rotation.w);
+
+        card.transform.position = new Vector3(-150f * Mathf.Sin(Mathf.PI * this.transform.eulerAngles.y / 180), card.transform.position.y, -150f * Mathf.Cos(Mathf.PI * this.transform.eulerAngles.y / 180));
 
         //card.transform.Rotate(Vector3.zero, .51f);
 
@@ -36,9 +38,7 @@ public class VuforiaCameraTest : MonoBehaviour {
 
         //y = - 150f * Mathf.Cos(Mathf.PI * this.transform.rotation.z * (this.transform.rotation.x / Mathf.Abs(this.transform.rotation.x)));
 
-        Debug.Log(x);
-
-        card.transform.position = new Vector3(x, y, 0f);
+        //card.transform.position = new Vector3(x, y, 0f);
         
         //card.transform.position = new Vector3 (-200 * Mathf.Cos(3.14f * this.transform.rotation.z), 200 * Mathf.Sin(3.14f*this.transform.rotation.z), card.transform.position.z);
 
