@@ -16,6 +16,9 @@ public class NetworkServerLib : MonoBehaviour {
 	private int timer=0;
 	private int max=20;
 	private bool firstJoined=false;
+
+	Dictionary<int, Vector3> vectors = new Dictionary<int, Vector3>();
+
 	public void Start()
 	{
 		
@@ -98,5 +101,19 @@ public class NetworkServerLib : MonoBehaviour {
 				networkview.RPC("SetNight",RPCMode.AllBuffered);
 			}
 		}
-	} 
+	}
+	//usersIds
+	//vectors
+	[RPC]
+	public void AceptCoords(int myId,Vector3 v3){
+		Debug.Log ("Adding to set id "+myId.ToString());
+		Debug.Log (v3.ToString());
+		if (usersIds.Contains (myId)) {
+			if(!vectors.ContainsKey(myId)){
+				vectors.Add (myId, v3);
+			}
+		}
+
+
+	}
 }
