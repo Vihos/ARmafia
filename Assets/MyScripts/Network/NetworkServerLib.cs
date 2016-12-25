@@ -107,9 +107,6 @@ public class NetworkServerLib : MonoBehaviour {
 	//vectorsPosition
 	[RPC]
 	public void AceptCoords(int myId,Vector3 v31,Vector3 v32){
-		Debug.Log ("Adding to set id "+myId.ToString());
-		Debug.Log ("Rotation " + v31.ToString());
-		Debug.Log ("Position " + v32.ToString());
 		if (usersIds.Contains (myId)) {
 			if(!vectorsRotation.ContainsKey(myId)){
 				vectorsRotation.Add (myId, v31);
@@ -120,13 +117,17 @@ public class NetworkServerLib : MonoBehaviour {
 				vectorsPosition.Add (myId, v32);
 			}
 		}
-		if (usersIds.Count > 1) {
-			
+		if (usersIds.Count > 0) {
+			SendCoordsToUsers (vectorsRotation,vectorsPosition);
 		}
 
 	}
 
 	public void SendCoordsToUsers(Dictionary<int, Vector3> rotations,Dictionary<int, Vector3> positions){
-		networkview.RPC("SendCoordsToUsers",RPCMode.OthersBuffered, rotations,positions);
+		
+		foreach (int elem in rotations.Keys) {
+			Debug.Log ("Sending="+elem+" posit= "+positions[elem].ToString()+" Rotation is "+rotations[elem]);
+			networkview.RPC("SendCoordsUsers",RPCMode.OthersBuffered, elem, positions[elem], rotations[elem]);
+		}
 	}
 }

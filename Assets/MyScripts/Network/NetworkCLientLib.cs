@@ -105,14 +105,13 @@ public class NetworkCLientLib : MonoBehaviour
 	}
 
 	[RPC]
-	public void SendCoordsToUsers(Dictionary<int, Vector3> rotations,Dictionary<int, Vector3> positions){
+	public void SendCoordsUsers(int id,Vector3 rotation,Vector3 position){
 		int i = 1;
-		foreach (int elem in rotations.Keys) {
-			if(elem!=myId){
-				gamem.setCardPosition (i, positions[elem], rotations[elem]);
-				i++;
-				Debug.Log ("Another element is id="+elem+" posit= "+positions[elem].ToString()+" Rotation is "+rotations[elem]);
-			}
+		Debug.Log ("Receiver id="+id+" posit= "+position.ToString()+" Rotation is "+rotation.ToString());
+
+		if(id!=myId){
+			gamem.setCardPosition (i, position, rotation);
+			i++;
 		}
 	}
 }
