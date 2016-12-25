@@ -7,18 +7,17 @@ public class CreateServer : MonoBehaviour {
 
     public InputField RoomName;
     public Dropdown PlayerCount;
-    public NetworkView networkview;
+    private NetworkView networkview;
 
     public Canvas ModalWindow;
     public Text ModalTitle;
     public Text ModalReport;
-
     private string CurrentRoomName = "";
     private int CurrentPlayerCount = 3;
     private const string typeName = "ARMafia";
-
     public void Start()
     {
+
         if (Network.isServer)
         {
             CreateModalWindow("Внимание!", "Сервер уже запущен на вашем устройстве.");
@@ -68,4 +67,10 @@ public class CreateServer : MonoBehaviour {
     {
         Debug.Log("Server Initializied");
     }
+
+	void OnConnectedToServer()
+	{
+		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
+		networkview.RPC("Change",RPCMode.AllBuffered,"Vuforia");
+	}
 }
