@@ -47,7 +47,7 @@ public class NetworkServerLib : MonoBehaviour {
 	void OnConnectedToServer()
 	{
 		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
-		networkview.RPC("Change",RPCMode.AllBuffered,"Vuforia");
+		networkview.RPC("Change",RPCMode.AllBuffered, "VuforiaPositionsTest");
 	}
 
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class testVuforiaCameraScript : MonoBehaviour {
     private Animator anim;
-    public Text myText;
     public GameObject card;
     private float angle;
 
@@ -16,7 +15,7 @@ public class testVuforiaCameraScript : MonoBehaviour {
 
 	void Start () {
         
-	}
+    }
 
     void Update()
     {
@@ -26,8 +25,6 @@ public class testVuforiaCameraScript : MonoBehaviour {
 
             card.transform.eulerAngles = new Vector3(card.transform.eulerAngles.x, this.transform.eulerAngles.y, card.transform.eulerAngles.z);
             card.transform.position = new Vector3(-1f * Mathf.Sin(angle), card.transform.position.y, -1f * Mathf.Cos(angle));
-
-            myText.text = "" + this.transform.eulerAngles;
         }
 
         //card.transform.position = Vector3.Lerp(card.transform.position, new Vector3(card.transform.position.x, 0.5f, card.transform.position.z), 0.25f);
@@ -40,6 +37,8 @@ public class testVuforiaCameraScript : MonoBehaviour {
         {
             cardPositions[0] = card.transform.position;
             cardRotations[0] = card.transform.eulerAngles;
+
+            Destroy(GameObject.Find("InfoWindow"));
 
             isPositionSelected = true;
             Debug.Log("Setted");
