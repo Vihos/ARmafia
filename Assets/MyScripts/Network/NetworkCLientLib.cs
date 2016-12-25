@@ -103,4 +103,16 @@ public class NetworkCLientLib : MonoBehaviour
 			dayNight.SetNight();
 		}
 	}
+
+	[RPC]
+	public void SendCoordsToUsers(Dictionary<int, Vector3> rotations,Dictionary<int, Vector3> positions){
+		int i = 1;
+		foreach (int elem in rotations.Keys) {
+			if(elem!=myId){
+				gamem.setCardPosition (i, positions[elem], rotations[elem]);
+				i++;
+				Debug.Log ("Another element is id="+elem+" posit= "+positions[elem].ToString()+" Rotation is "+rotations[elem]);
+			}
+		}
+	}
 }

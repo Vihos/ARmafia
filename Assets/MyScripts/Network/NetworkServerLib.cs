@@ -120,7 +120,13 @@ public class NetworkServerLib : MonoBehaviour {
 				vectorsPosition.Add (myId, v32);
 			}
 		}
+		if (usersIds.Count > 1) {
+			
+		}
 
+	}
 
+	public void SendCoordsToUsers(Dictionary<int, Vector3> rotations,Dictionary<int, Vector3> positions){
+		networkview.RPC("SendCoordsToUsers",RPCMode.OthersBuffered, rotations,positions);
 	}
 }
