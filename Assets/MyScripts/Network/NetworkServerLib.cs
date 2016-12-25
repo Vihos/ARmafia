@@ -17,7 +17,8 @@ public class NetworkServerLib : MonoBehaviour {
 	private int max=20;
 	private bool firstJoined=false;
 
-	Dictionary<int, Vector3> vectors = new Dictionary<int, Vector3>();
+	Dictionary<int, Vector3> vectorsRotation = new Dictionary<int, Vector3>();
+	Dictionary<int, Vector3> vectorsPosition = new Dictionary<int, Vector3>();
 
 	public void Start()
 	{
@@ -102,15 +103,21 @@ public class NetworkServerLib : MonoBehaviour {
 			}
 		}
 	}
-	//usersIds
-	//vectors
+	//vectorsRotation
+	//vectorsPosition
 	[RPC]
-	public void AceptCoords(int myId,Vector3 v3){
+	public void AceptCoords(int myId,Vector3 v31,Vector3 v32){
 		Debug.Log ("Adding to set id "+myId.ToString());
-		Debug.Log (v3.ToString());
+		Debug.Log ("Rotation " + v31.ToString());
+		Debug.Log ("Position " + v32.ToString());
 		if (usersIds.Contains (myId)) {
-			if(!vectors.ContainsKey(myId)){
-				vectors.Add (myId, v3);
+			if(!vectorsRotation.ContainsKey(myId)){
+				vectorsRotation.Add (myId, v31);
+			}
+		}
+		if (usersIds.Contains (myId)) {
+			if(!vectorsPosition.ContainsKey(myId)){
+				vectorsPosition.Add (myId, v32);
 			}
 		}
 

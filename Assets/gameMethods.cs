@@ -28,6 +28,10 @@ public class gameMethods : MonoBehaviour {
 	public void sendPositionToServer() // id (0-2)
 	{
 		imgtrg = GameObject.Find ("ImageTarget/0");
-		networklib.sendToServer(imgtrg.transform.eulerAngles);
+
+		Debug.Log ("Rotation " + imgtrg.transform.eulerAngles.ToString());
+		Debug.Log ("Position " + imgtrg.transform.position.ToString());
+
+		networklib.sendToServer(imgtrg.transform.eulerAngles,imgtrg.transform.position);
 	}
 }

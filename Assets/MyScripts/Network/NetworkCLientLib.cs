@@ -78,8 +78,8 @@ public class NetworkCLientLib : MonoBehaviour
 		Debug.Log ("Gui found");
 	}
 
-	public void sendToServer(Vector3 v3){
-		networkview.RPC ("AceptCoords", RPCMode.Others, myId, v3);
+	public void sendToServer(Vector3 v31,Vector3 v32){
+		networkview.RPC ("AceptCoords", RPCMode.Others, myId, v31,v32);
 	}
 
 	[RPC]
