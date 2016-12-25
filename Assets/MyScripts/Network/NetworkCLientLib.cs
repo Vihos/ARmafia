@@ -109,9 +109,9 @@ public class NetworkCLientLib : MonoBehaviour
 		int i = 1;
 		Debug.Log ("Receiver id="+id+" posit= "+position.ToString()+" Rotation is "+rotation.ToString());
 
-		if(id!=myId){
+		//if(id!=myId){
 			gamem.setCardPosition (i, position, rotation);
 			i++;
-		}
+		//}
 	}
 }
