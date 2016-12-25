@@ -5,10 +5,11 @@ using UnityEngine.UI; // Required when Using UI elements.
 using UnityEngine.SceneManagement;
 
 public class ConnectServerGui : MonoBehaviour {
-	
+
 	public HostData[] hostList;
 	public GameObject ButtonClone; // Init Button Clone Object
 	public GameObject ServersList; // Init Parent for Button Clone Object
+    public GameObject RefreshConnectModal;
 
 	public Canvas ModalWindow;
 	public Text ModalTitle;
@@ -30,7 +31,7 @@ public class ConnectServerGui : MonoBehaviour {
 
 	private void Start()
 	{
-		networklib  = GameObject.Find("NetworkV").GetComponent<NetworkCLientLib>();
+        networklib  = GameObject.Find("NetworkV").GetComponent<NetworkCLientLib>();
 		if (networklib.isClient())
 		{
 			SceneManager.LoadScene("lobby", LoadSceneMode.Single);
@@ -40,12 +41,20 @@ public class ConnectServerGui : MonoBehaviour {
 		networklib.FindGui();
 	}
 
+    public void refreshButtonClick()
+    {
+        RefreshConnectModal.SetActive(true);
+        networklib.RefreshServerList();
+    }
+
 	public void GenerateServerButtons(HostData[] hostList)
 	{
 		// Init variable for ServersList Object to change size of list
 		var rectTransform = ServersList.GetComponent<RectTransform>();
 
-		for (int i = 0; i < hostList.Length; i++)
+        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, 0);
+
+        for (int i = 0; i < hostList.Length; i++)
 		{
 			// Creating Button Clone as a Gamebject on scene
 			GameObject TempButtonCloneGameObject = Instantiate(ButtonClone) as GameObject;
@@ -67,7 +76,8 @@ public class ConnectServerGui : MonoBehaviour {
 
 			//Adding Listener
 			TempButtonCloneButtonObject.onClick.AddListener(() => networklib.JoinServer(this.name));
-		}
+            RefreshConnectModal.SetActive(false);
+        }
 	}
 
 	void OnConnectedToServer()

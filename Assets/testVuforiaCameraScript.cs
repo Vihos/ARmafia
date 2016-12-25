@@ -31,7 +31,7 @@ public class testVuforiaCameraScript : MonoBehaviour {
         //card.transform.position = Vector3.Lerp(card.transform.position, cardPositions[0], 0.25f);
 	}
 
-    public void submitMyCardPosition()
+    public void sumbitMyCardPosition()
     {
         if (!isPositionSelected)
         {
