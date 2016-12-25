@@ -11,6 +11,11 @@ public class NetworkServerLib : MonoBehaviour {
 	private int CurrentPlayerCount = 3;
 	private const string typeName = "ARMafia";
 	private StartServerGui startServerGui;
+	List<int> usersIds = new List<int>();
+	private bool isDay = true;
+	private int timer=0;
+	private int max=20;
+	private bool firstJoined=false;
 	public void Start()
 	{
 		
@@ -46,8 +51,52 @@ public class NetworkServerLib : MonoBehaviour {
 
 	void OnConnectedToServer()
 	{
-		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
+		networkview = GameObject.Find("NetworkV").GetComponent<NetworkView>();
 		networkview.RPC("Change",RPCMode.AllBuffered, "VuforiaPositionsTest");
+
+	}
+	void listIds(){
+		string str = "";
+		foreach(int elem in usersIds ){
+			str += elem +" and";
+		}
+		Debug.Log ("Now are connected "+str);
 	}
 
+
+	[RPC]
+	public void AddClient(int id, string str)
+	{
+		if (str == "Armafia") {
+			usersIds.Add (id);
+			Debug.Log ("User with id " + id + " has joined");
+			listIds ();
+		}
+		if(!firstJoined){
+			firstJoined = true;
+			Invoke ("UpdateTimer", 0);
+		}
+	}
+
+	public void UpdateTimer(){
+
+		if (timer > 0) {
+			if (isDay) {
+				Invoke ("UpdateTimer", 1);
+				timer--;
+			} else {
+				Invoke ("UpdateTimer", 1);
+				timer--;
+			}
+		} else {
+			isDay = !isDay;
+			timer = max;
+			Invoke ("UpdateTimer", 0);
+			if (isDay) {
+				networkview.RPC("SetDay",RPCMode.AllBuffered);
+			} else {
+				networkview.RPC("SetNight",RPCMode.AllBuffered);
+			}
+		}
+	} 
 }
