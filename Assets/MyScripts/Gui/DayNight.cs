@@ -8,34 +8,44 @@ public class DayNight : MonoBehaviour {
 	public Text time;
 	public Image moonSoon;
 	private bool isDay = true;
-	private int count=10;
+	private int timer=10;
 	private int max=20;
+	private NetworkCLientLib networklib;
 	// Use this for initialization
 	void Start () {
-		
-		//moonSoon.transform.rotation= new Quaternion(0f,0f,180f,0f);
+		networklib  = GameObject.Find("NetworkV").GetComponent<NetworkCLientLib>();
+		networklib.FindDayNight();
 		Invoke("UpdateTimer", 1);
 	}
 	void UpdateTimer( ){
 
-		if (count > 0) {
+		if (timer > 0) {
 			if (isDay) {
-				time.text = (count / max).ToString () + ":" + (count % max).ToString ();
-				moonSoon.transform.rotation= Quaternion.Euler(new Vector3(0, 0, 180*count/max));
+				time.text = (timer / 60).ToString () + ":" + (timer % 60).ToString ();
+				moonSoon.transform.rotation= Quaternion.Euler(new Vector3(0, 0, 180+180*timer/max));
 				Invoke ("UpdateTimer", 1);
-				count--;
+				timer--;
 			} else {
-				time.text = (count / max).ToString () + ":" + (count % max).ToString ();
-				moonSoon.transform.rotation= Quaternion.Euler(new Vector3(0, 0, 180+180*count/max));
+				time.text = (timer / 60).ToString () + ":" + (timer % 60).ToString ();
+				moonSoon.transform.rotation= Quaternion.Euler(new Vector3(0, 0, 180*timer/max));
 				Invoke ("UpdateTimer", 1);
-				count--;
+				timer--;
 			}
 		} else {
 			isDay = !(isDay);
-			count = max;
+			timer = max;
 			Invoke ("UpdateTimer", 0);
 		}
 	} 
+	public void SetDay(){
+		isDay = true;
+		timer = max;
+	}
+	public void SetNight(){
+		isDay = false;
+		timer = max;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		
