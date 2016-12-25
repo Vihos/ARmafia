@@ -43,8 +43,18 @@ public class ConnectServerGui : MonoBehaviour {
 
     public void refreshButtonClick()
     {
-        RefreshConnectModal.SetActive(true);
+        createModalRefresh();
         networklib.RefreshServerList();
+    }
+
+    public void createModalRefresh()
+    {
+        RefreshConnectModal.SetActive(true);
+    }
+
+    public void remooveModalRefresh()
+    {
+        RefreshConnectModal.SetActive(false);
     }
 
 	public void GenerateServerButtons(HostData[] hostList)
@@ -76,9 +86,8 @@ public class ConnectServerGui : MonoBehaviour {
 
 			//Adding Listener
 			TempButtonCloneButtonObject.onClick.AddListener(() => networklib.JoinServer(this.name));
-            RefreshConnectModal.SetActive(false);
         }
-	}
+    }
 
 	void OnConnectedToServer()
 	{
