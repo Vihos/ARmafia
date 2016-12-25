@@ -127,7 +127,7 @@ public class NetworkServerLib : MonoBehaviour {
 		
 		foreach (int elem in rotations.Keys) {
 			Debug.Log ("Sending="+elem+" posit= "+positions[elem].ToString()+" Rotation is "+rotations[elem]);
-			networkview.RPC("SendCoordsUsers",RPCMode.OthersBuffered, rotations[elem], elem, positions[elem]);
+			networkview.RPC("SendCoordsUsers",RPCMode.OthersBuffered, elem, rotations[elem], positions[elem]);
 		}
 	}
 }
