@@ -11,6 +11,7 @@ public class NetworkServerLib : MonoBehaviour {
 	private int CurrentPlayerCount = 3;
 	private const string typeName = "ARMafia";
 	private StartServerGui startServerGui;
+	List<int> usersIds = new List<int>();
 	public void Start()
 	{
 		
@@ -49,5 +50,18 @@ public class NetworkServerLib : MonoBehaviour {
 		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
 		networkview.RPC("Change",RPCMode.AllBuffered, "VuforiaPositionsTest");
 	}
-
+	void listIds(){
+		string str = "";
+		foreach(int elem in usersIds ){
+			str += elem +" and";
+		}
+		Debug.Log ("Now are connected "+str);
+	}
+	[RPC]
+	public void AddClient(int id)
+	{
+		usersIds.Add(id);
+		Debug.Log ("User with id "+id+ " has joined");
+		listIds ();
+	}
 }

@@ -12,7 +12,6 @@ public class CreateServer : MonoBehaviour {
     public Canvas ModalWindow;
     public Text ModalTitle;
     public Text ModalReport;
-	GameObject go;
     private string CurrentRoomName = "";
     private int CurrentPlayerCount = 3;
     private const string typeName = "ARMafia";
