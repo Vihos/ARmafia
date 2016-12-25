@@ -8,8 +8,8 @@ public class DayNight : MonoBehaviour {
 	public Text time;
 	public Image moonSoon;
 	private bool isDay = true;
-	private int count=10;
-	private int max=20;
+	private int count=180;
+	private int max= 180;
 	// Use this for initialization
 	void Start () {
 		
