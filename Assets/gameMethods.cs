@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class gameMethods : MonoBehaviour {
 
     private GameObject tempCard;
-
+	private NetworkCLientLib networklib;
+	private GameObject imgtrg;
     void Start () {
-        
+		networklib  = GameObject.Find("NetworkV").GetComponent<NetworkCLientLib>();
+		networklib.FindGameMethos();
     }
 	
 	void Update () {
@@ -23,13 +25,9 @@ public class gameMethods : MonoBehaviour {
         Debug.Log("Transformed card: " + id + " to positions " + position + " with rotations " + rotation);
     }
 
-    public void setDayTimer()
-    {
-
-    }
-
-    public void setNightTimer()
-    {
-
-    }
+	public void sendPositionToServer() // id (0-2)
+	{
+		imgtrg = GameObject.Find ("ImageTarget/0");
+		networklib.sendToServer(imgtrg.transform.eulerAngles);
+	}
 }

@@ -12,7 +12,7 @@ public class NetworkCLientLib : MonoBehaviour
 	private int myId;
 	private bool dayObjectFount = false;
 	private DayNight dayNight;
-
+	private gameMethods gamem;
 
 	private void Start()
 	{
@@ -31,6 +31,9 @@ public class NetworkCLientLib : MonoBehaviour
 	public void FindDayNight(){
 		dayNight  = GameObject.Find("DayNight").GetComponent<DayNight>();
 		dayObjectFount = true;
+	}
+	public void FindGameMethos(){
+		gamem  = GameObject.Find("ARCamera").GetComponent<gameMethods>();
 	}
 
 
@@ -73,6 +76,10 @@ public class NetworkCLientLib : MonoBehaviour
 	public void FindGui(){
 		connectGui  = GameObject.Find("ClientScripts").GetComponent<ConnectServerGui>();
 		Debug.Log ("Gui found");
+	}
+
+	public void sendToServer(Vector3 v3){
+		networkview.RPC ("AceptCoords", RPCMode.Others, myId, v3);
 	}
 
 	[RPC]
