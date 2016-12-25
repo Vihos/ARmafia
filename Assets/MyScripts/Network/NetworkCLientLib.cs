@@ -46,16 +46,19 @@ public class NetworkCLientLib : MonoBehaviour
 		{
 			Debug.Log ("event hostlistrefreshed");
 			hostList = MasterServer.PollHostList();
-			if (connectGui!=null) {
+            if (connectGui!=null) {
+                Debug.Log("connectGui != null");
 				connectGui.GenerateServerButtons(hostList);
+                connectGui.remooveModalRefresh();
 
-			}
+            }
 		}
 	}
 
 	public void JoinServer(string Button)
 	{
-		int i;
+        connectGui.createModalRefresh();
+        int i;
 		int.TryParse(Button, out i);
 		Network.Connect(hostList[i]);
 
@@ -63,7 +66,7 @@ public class NetworkCLientLib : MonoBehaviour
 
 	void OnConnectedToServer()
 	{
-		networkview.RPC ("AddClient", RPCMode.Others, myId,"Armafia");
+        networkview.RPC ("AddClient", RPCMode.Others, myId,"Armafia");
 	}
 
 

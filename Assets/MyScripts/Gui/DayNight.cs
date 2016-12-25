@@ -27,14 +27,14 @@ public class DayNight : MonoBehaviour
             if (isDay)
             {
                 time.text = (timer / 60).ToString() + ":" + (timer % 60).ToString();
-                moonSoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180 + 180timer / max));
+                moonSoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180 + 180*timer / max));
                 Invoke("UpdateTimer", 1);
                 timer--;
             }
             else
             {
                 time.text = (timer / 60).ToString() + ":" + (timer % 60).ToString();
-                moonSoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180timer / max));
+                moonSoon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180*timer / max));
                 Invoke("UpdateTimer", 1);
                 timer--;
             }
