@@ -12,14 +12,12 @@ public class CreateServer : MonoBehaviour {
     public Canvas ModalWindow;
     public Text ModalTitle;
     public Text ModalReport;
-
+	GameObject go;
     private string CurrentRoomName = "";
     private int CurrentPlayerCount = 3;
     private const string typeName = "ARMafia";
-
     public void Start()
     {
-        networkview = GameObject.Find("NetworkView").GetComponent<NetworkView>();
 
         if (Network.isServer)
         {
@@ -70,4 +68,10 @@ public class CreateServer : MonoBehaviour {
     {
         Debug.Log("Server Initializied");
     }
+
+	void OnConnectedToServer()
+	{
+		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
+		networkview.RPC("Change",RPCMode.AllBuffered,"Vuforia");
+	}
 }
