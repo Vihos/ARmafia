@@ -9,8 +9,8 @@ public class DayNight : MonoBehaviour
     public Text time;
     public Image moonSoon;
     private bool isDay = true;
-    private int timer = 10;
-    private int max = 20;
+    private int timer = 30;
+    private int max = 30;
     private NetworkCLientLib networklib;
     // Use this for initialization
     void Start()

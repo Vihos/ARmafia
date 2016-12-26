@@ -41,6 +41,7 @@ public class NetworkCLientLib : MonoBehaviour
 	{
 		Debug.Log("Refresh");
 		MasterServer.RequestHostList("ARMafia");
+		//connectGui.remooveModalRefresh ();
 	}
 
 	public void OnMasterServerEvent(MasterServerEvent msEvent)
@@ -69,7 +70,9 @@ public class NetworkCLientLib : MonoBehaviour
 
 	void OnConnectedToServer()
 	{
-        networkview.RPC ("AddClient", RPCMode.Others, myId,"Armafia");
+		if(Network.isClient){
+        	networkview.RPC ("AddClient", RPCMode.Others, myId,"Armafia");
+		}
 	}
 
 
@@ -109,9 +112,9 @@ public class NetworkCLientLib : MonoBehaviour
 		int i = 1;
 		Debug.Log ("Receiver id="+id+" posit= "+position.ToString()+" Rotation is "+rotation.ToString());
 
-		//if(id!=myId){
+		if(id!=myId){
 			gamem.setCardPosition (i, position, rotation);
 			i++;
-		//}
+		}
 	}
 }

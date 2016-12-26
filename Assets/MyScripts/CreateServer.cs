@@ -71,6 +71,6 @@ public class CreateServer : MonoBehaviour {
 	void OnConnectedToServer()
 	{
 		networkview = GameObject.Find("ClientScripts").GetComponent<NetworkView>();
-		networkview.RPC("Change",RPCMode.AllBuffered,"Vuforia");
+		networkview.RPC("Change",RPCMode.OthersBuffered,"Vuforia");
 	}
 }
